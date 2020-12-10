@@ -1,0 +1,32 @@
+version: '3'
+services:
+  web:
+    build:
+        context: .
+        dockerfile: ./docker/Dockerfile
+    container_name: docker-web
+    command: "python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/var/www/webapp
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    links:
+      - db
+  db:
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: mysql_host
+    restart: always
+    ports:
+      - "32768:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pakutter
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+volumes:
+  mysql-db:
+    driver: local
