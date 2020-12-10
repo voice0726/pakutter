@@ -1,0 +1,27 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block body %}
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    {% include 'app/tweet_form.html' %}
+    {% include 'app/time_line.html' %}
+
+{% endblock %}
+
+{% block left-column %}
+<div class="card">
+<ul>
+    <li>
+        {{ data.login_user.username }}
+    </li>
+    <li>
+        フォローしている： {{ data.cnt_following }}
+    </li>
+    <li>
+        フォローされている： {{ data.cnt_followed }}
+    </li>
+</ul>
+
+</div>
+{% endblock %}

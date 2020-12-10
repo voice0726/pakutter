@@ -1,0 +1,25 @@
+[
+  {
+    "model": "app.Tweet",
+    "pk": "7f06e0bdbe454bfab788-60b49e968748",
+    "fields": {
+      "user": "fca4b155dd8a45cda8f3c7fbed5d240a",
+      "content": "test",
+      "is_retweet": "False",
+      "created_at": "2019-11-14 11:14:00",
+      "updated_at": "2019-11-14 11:14:00"
+    }
+  },
+  {
+    "model": "user.User",
+    "pk": "fca4b155dd8a45cda8f3c7fbed5d240a",
+    "fields": {
+      "username": "test",
+      "viewname": "test",
+      "email": "test",
+      "is_staff": "True",
+      "is_active": "True",
+      "date_joined": "2019-11-14 11:14:00"
+    }
+  }
+]

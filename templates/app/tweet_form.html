@@ -1,0 +1,30 @@
+<div class="card mb-2">
+    <div class="card-body">
+        <form class="tweet-form condensed" action="{% url 'app:post_tweet' %}" method="post">
+            <div class="form-row">
+                <div class="col">
+                    {% csrf_token %}
+                    <div>
+                        <div class="form-control tweet-content-form" role="textbox" contenteditable="true"
+                             aria-multiline="true" spellcheck="true" aria-expanded="false"
+                             aria-owns="typeahead-dropdown-10" dir="ltr" data-placeholder="いまどうしてる？"
+                             aria-autocomplete="list">
+                            <div>いまどうしてる？</div>
+                        </div>
+                        <div class="editor-right editor-bottom">
+                            <span class="tweet-length">140</span>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-row form-footer mt-2">
+                <div class="col">
+                    <input class="btn btn-primary post-tweet float-right" type="button" value="ツイート">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

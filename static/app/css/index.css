@@ -1,0 +1,136 @@
+.tweet-content-form {
+    display: block;
+    word-wrap: break-word;
+    width: auto;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    direction: ltr;
+    line-height: 20px;
+    min-height: 80px;
+    padding: 8px 31px 8px 8px;
+}
+
+.tweet-form.condensed .tweet-content-form {
+    max-height: 36px;
+    min-height: 36px;
+}
+
+.form-footer {
+    display: block;
+}
+
+.tweet-form.condensed .form-footer {
+    display: none;
+}
+
+.is-showPlaceholder::before {
+    content: attr(data-placeholder);
+    color: #888;
+    font-style: italic;
+    pointer-events: none;
+    position: absolute;
+}
+
+.editor-right {
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+}
+
+.editor-bottom {
+    bottom: 0;
+    margin: 0 8px 4px 4px;
+}
+
+.tweet-length {
+    display: none;
+}
+
+.user-avatar {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.avatar-img {
+    width: 50px;
+    height: 50px;
+}
+
+.tweet-body {
+    display: inline-block;
+    width: -webkit-calc(100% - 55px);
+    width: calc(100% - 55px);
+}
+
+.fav:hover {
+    color: #ff0066;
+}
+
+.fav.checked {
+    color: #ff0066;
+}
+
+.retweeted {
+    color: #008800;
+}
+
+.reply-form {
+    display: block;
+}
+
+.fa-comment, .fa-trash-alt, .fav, .rt, .hashtag {
+    cursor: pointer;
+}
+
+.hashtag {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.hashtag:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    widtH: 100%;
+    z-index: 9999;
+}
+
+.alert {
+
+    top: 0;
+    width: 40%;
+    margin: 0 auto;
+    padding: 6px 64px 6px 12px;
+}
+
+.alert > .error-msg {
+    margin: 0;
+}
+
+.alert > .close {
+    margin: 0;
+    padding: 4px 20px;
+}
+
+.modal-body {
+    position: relative;
+}
+
+.tweet-footer-box {
+    display: inline-block;
+    width: 100px;
+}

@@ -1,0 +1,62 @@
+{% for item in data.tweets %}
+    <div class="list-group-item timeline">
+        <div class="user-avatar"><img src="/media/{{ item.user.setting.picture }}" class="avatar-img" alt=""></div>
+        <div class="tweet-body" id="{{ item.tweet.id }}">
+            <div class="tweet-id" hidden>{{ item.tweet.id }}</div>
+            {% if item.is_rt == True %}
+                <div class="rt-header small">
+                    {{ item.rt_by.viewname }}さんがリツイート
+                </div>
+            {% endif %}
+            <h6 class="mb-2 text-muted"><a
+                    href="{% url 'app:user_page' item.user.username %}">{{ item.user.viewname }} @{{ item.user.username }}</a>
+                - <a href="/detail/{{ item.tweet.id }}">{{ item.tweet.created_at|date:"Y/m/j H:i:s" }}</a></h6>
+            <p class="mb-2 tweet-content">{{ item.tweet.content|linebreaksbr }}</p>
+            {% if item.user.id == data.login_user.id %}
+                <div class="tweet-footer-box">
+                    <i class="far fa-trash-alt" data-toggle="modal" data-target="#delete_modal"
+                       data-tweetid="{{ item.tweet.pk }}"></i>
+                </div>
+            {% endif %}
+            {% if item.user.id != data.login_user.id %}
+                <div class="tweet-footer-box">
+                    {% if data.login_user.is_authenticated %}
+                        <i class="far fa-comment" data-toggle="modal" data-target="#reply-modal"
+                           data-tweetid="{{ item.tweet.pk }}"
+                           data-reply-to-username="{{ item.user.username }}"></i>
+                    {% else %}
+                        <i class="far fa-comment" data-toggle="modal" data-target="#login_modal"></i>
+                    {% endif %}
+                </div>
+                <div class="tweet-footer-box">
+                    {% if data.login_user.is_authenticated %}
+                        {% if item.rt_by == data.login_user %}
+                            <i class="fas fa-retweet rt retweeted auth"></i>
+                            <span class="rt-count">{% if item.rt_count != 0 %}{{ item.rt_count }}{% endif %}</span>
+                        {% else %}
+                            <i class="fas fa-retweet rt auth"></i>
+                            <span class="rt-count">{% if item.rt_count != 0 %}{{ item.rt_count }}{% endif %}</span>
+                        {% endif %}
+                    {% else %}
+                        <i class="fas fa-retweet rt" data-toggle="modal" data-target="#login_modal"></i>
+                        <span class="rt-count">{% if item.rt_count != 0 %}{{ item.rt_count }}{% endif %}</span>
+                    {% endif %}
+                </div>
+                <div class="tweet-footer-box">
+                    {% if data.login_user.is_authenticated %}
+                        {% if item.is_faved_by_user == True %}
+                            <i class="fas fa-heart fav auth checked"></i>
+                            <span class="fav-count">{{ item.fav_count }}</span>
+                        {% else %}
+                            <i class="far fa-heart fav auth"></i>
+                            <span class="fav-count">{% if item.fav_count != 0 %}{{ item.fav_count }}{% endif %}</span>
+                        {% endif %}
+                    {% else %}
+                        <i class="far fa-heart fav" data-toggle="modal" data-target="#login_modal"></i>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+{% endfor %}

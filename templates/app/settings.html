@@ -1,0 +1,41 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block left-column %}
+    <div class="card">
+        <ul>
+            <li>
+                {{ data.user.username }}
+            </li>
+            {% if data.login_user != data.user %}
+                {% if not data.is_followed_by_login_user %}
+                    <li>
+                        <div class="user-id" hidden>{{ data.user.id }}</div>
+                        <button class="follow-button">フォローする</button>
+                    </li>
+                {% else %}
+                    <li>
+                        <div class="user-id" hidden>{{ data.user.id }}</div>
+                        <button class="follow-button followed">フォロー解除</button>
+                    </li>
+                {% endif %}
+            {% endif %}
+            <li>
+                フォローしている： {{ data.cnt_following }}
+            </li>
+            <li>
+                フォローされている： {{ data.cnt_followed }}
+            </li>
+        </ul>
+
+    </div>
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'app:settings' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ settingform.as_p }}
+        {{ userform.as_p }}
+        <input type="submit" value="投稿"/>
+    </form>
+{% endblock %}
